@@ -3,15 +3,21 @@ import { NgModule } from '@angular/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { AppComponent } from './app.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+import { environment } from 'src/environments/environment';
+
+const config: SocketIoConfig = { url: 'http://localhost:3003', options: {} };
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    AngularFireModule.initializeApp(environment.FIREBASE_SETTINGS),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

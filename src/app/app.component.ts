@@ -16,7 +16,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(public socket: SocketioService, private authSvc: AuthService) {
       this.suscription$ = this.socket.on('broadcast-message').subscribe((usersList: any) => {
-        //console.log(usersList);
         this.listaUsuarios = usersList;
       });
   }
@@ -29,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
     console.log('Provider: ', provider);
     this.authSvc.loginOAuth2(provider)
       .then((user: any) => {
-        this.socket.emit('message', {
+        this.socket.emit('signUp', {
           fullName: user.displayName,
           email: user.email,
           photoUrl: user.photoURL

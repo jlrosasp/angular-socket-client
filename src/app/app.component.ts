@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
 import { SocketioService } from './services/socketio.service';
 
@@ -31,7 +32,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.socket.emit('signUp', {
           fullName: user.displayName,
           email: user.email,
-          photoUrl: user.photoURL
+          photoUrl: user.photoURL,
+          apiKey: environment.API_KEY
         });
       })
       .catch((error) => {
